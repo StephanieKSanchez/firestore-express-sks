@@ -1,5 +1,8 @@
-const functions = require("firebase-functions");
-const express = require('express'); // connects to express
+import functions from 'firebase-functions';
+import express from 'express'; // connects to express
+import cors from 'cors';
+
+// import { groceryStoresCollection } from "./connectDb";
 
 const app = express(); // creates api
 
@@ -11,7 +14,7 @@ app.get('/', (req, res) =>{
     res.send('This is HOME 🏡');
 });
 
-exports.app = functions.https.onRequest(app);
+export const api = functions.https.onRequest(app);
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -20,3 +23,4 @@ exports.app = functions.https.onRequest(app);
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
