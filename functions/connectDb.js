@@ -1,11 +1,12 @@
+import { initializeApp, getApps, cert } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+import myCredentials from "./credentials.js"
 
-const admin = require("firebase-admin");
-
-const serviceAccount = require("path/to/serviceAccountKey.js");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-const db = admin.firestore();
-export const groceryStoresCollection = db.collection('groceryStores');
+export default function connectDb() {  // if there any app in this project initialize , connect to firestore
+  if(getApps().length === 0){
+      initializeApp({
+          credential: cert(myCredentials)
+      })
+  }
+  return getFirestore();  
+}
